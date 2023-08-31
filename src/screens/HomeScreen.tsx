@@ -3,49 +3,45 @@ import {
   Text,
   SafeAreaView,
   FlatList,
-  ActivityIndicator,
   View,
 } from 'react-native';
 import { useContext } from 'react';
-import { AppContext } from '../context/Context'; // Asegúrate de importar correctamente el contexto
-
+import { AppContext } from '../context/Context';
 import { PokemonCard } from '../components/PokemonCard';
-// import useFetch from '../hooks/useFetch';
+import { Pokemon } from '../interfaces/Pokemon.interface';
 
 
 export default function HomeScreen() {
-  // const { data, loading, error } = useFetch('https://pokeapi.co/api/v2/pokemon?limit=151'); // Llama a useFetch
-  const { state, dispatch } = useContext(AppContext); // Obtén el estado de tu contexto global
+  const { state } = useContext(AppContext); // Obtén el estado de tu contexto global
 
-  const { pokemons } = state; // Extrae la matriz de Pokémon del estado
+  // const { pokemons } = state; // Extrae el arry de Pokémon del estado
+  console.log(state.pokemons);
+  // console.log(pokemons[1].url);
+  
+
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView >
+    {state.pokemons.length === 0 ? (
+      <Text>Cargando...</Text>
+    ) : (
+
+      // state.pokemons[0].map((item)=> item.name)
       <FlatList
-  data={pokemons}
-  keyExtractor={(item) => item.url} // Utiliza la URL como clave única
-  // renderItem={({ item }) => <PokemonCard url={item.url} />}
-  renderItem={({ item }) => (
-    <View>
-      <Text>{item.name}</Text>
-    </View>
-  )}
-/>
-    
-    
-    </SafeAreaView>
+        data={state.pokemons[0]}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          
+          <PokemonCard url={item.url} />
+            // <Text>{item.url}</Text>
+          
+        )}
+      />
+    )}
+  </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
 
-function
-  // renderItem={({ item }) => <PokemonCard url={item.url} />}
-  renderItem(info: ListRenderItemInfo<Pokemon>): ReactElement<any, string | JSXElementConstructor<any>> | null {
-    throw new Error('Function not implemented.');
-}
+
+

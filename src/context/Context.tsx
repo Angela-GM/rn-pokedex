@@ -65,7 +65,9 @@ interface ContextProviderProps {
 
 export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   const { data, loading, error } = useFetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+  
 
   useEffect(() => {
     if (!loading && !error && data) {
