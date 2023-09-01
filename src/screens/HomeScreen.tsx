@@ -17,7 +17,7 @@ export default function HomeScreen() {
 
 
   // const { pokemons } = state; // Extrae el arry de Pokémon del estado
-  console.log(state.pokemons);
+  // console.log(state.pokemons);
   // console.log(pokemons[1].url);
   
 
