@@ -1,18 +1,20 @@
 import {
-  StyleSheet,
   Text,
   SafeAreaView,
   FlatList,
-  View,
+  TouchableOpacity,
 } from 'react-native';
 import { useContext } from 'react';
 import { AppContext } from '../context/Context';
 import { PokemonCard } from '../components/PokemonCard';
-import { Pokemon } from '../interfaces/Pokemon.interface';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function HomeScreen() {
   const { state } = useContext(AppContext); // Obtén el estado de tu contexto global
+  const navigation = useNavigation(); // Obtén la prop de navegación
+
 
   // const { pokemons } = state; // Extrae el arry de Pokémon del estado
   console.log(state.pokemons);
@@ -31,9 +33,15 @@ export default function HomeScreen() {
         data={state.pokemons[0]}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          
-          <PokemonCard url={item.url} />
-            // <Text>{item.url}</Text>
+
+          <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('PokemonDetail', {url: item.url });
+
+          }}
+          >
+          <PokemonCard url={item && 'url' in item ? item.url : ''} />
+          </TouchableOpacity>
           
         )}
       />
