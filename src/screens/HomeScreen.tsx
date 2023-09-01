@@ -16,10 +16,6 @@ export default function HomeScreen() {
   const navigation = useNavigation(); // Obtén la prop de navegación
 
 
-  // const { pokemons } = state; // Extrae el arry de Pokémon del estado
-  // console.log(state.pokemons);
-  // console.log(pokemons[1].url);
-  
 
 
   return (
