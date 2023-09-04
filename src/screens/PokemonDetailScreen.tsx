@@ -11,15 +11,26 @@ import {
 import useFetch from "../hooks/useFetch";
 import { Pokemon } from "../interfaces/Pokemon.interface";
 
-const PokemonDetailScreen = () => {
+interface PokemonDetailScreenProps {
+  route: {
+    params: {
+      url: string;
+    };
+  };
+}
+interface RouteParams {
+  url: string;
+}
+
+const PokemonDetailScreen: React.FC<PokemonDetailScreenProps> = () => {
   const route = useRoute();
-  const { url } = route.params;
+  const { url } = route.params as RouteParams;
 
   const { data, loading, error } = useFetch<Pokemon>(url);
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <Text style={styles.loadingText}>Loading...</Text>
       </SafeAreaView>
     );
@@ -29,7 +40,7 @@ const PokemonDetailScreen = () => {
     const { name, id, sprites, types, abilities, weight } = data;
 
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <ScrollView>
           {/*INFO ON THE TOP */}
           <View style={styles.topView}>

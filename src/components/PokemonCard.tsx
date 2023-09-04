@@ -7,15 +7,26 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
+
+import { PokemonApi } from "../context/Context";
 import useFetch from "../hooks/useFetch";
+import { background } from "../utils/BackgroundsByType";
 
 interface PokemonCardProps {
   url: string;
 }
 
 export function PokemonCard({ url }: PokemonCardProps) {
-  const { data, loading, error } = useFetch(url);
+  const { data, loading, error } = useFetch<PokemonApi>(url);
   console.log(data);
+
+  
+  const backgroundSelected = background[data?.types[0]?.type?.name];
+
+  console.log(backgroundSelected);
+  
+
+  
 
   if (loading) {
     return <Text>Loading...</Text>;
@@ -26,7 +37,7 @@ export function PokemonCard({ url }: PokemonCardProps) {
   }
 
   return (
-    <View style={styles.card}>
+<View style={[styles.card, { backgroundColor: backgroundSelected }]}>
       <View style={styles.textContainer}>
         <Text style={styles.name}>{data.name}</Text>
         <Text style={styles.id}>#{data.id}</Text>

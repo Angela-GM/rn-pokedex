@@ -1,13 +1,13 @@
 import React, { ReactNode, createContext, useEffect, useReducer } from 'react';
 import useFetch from '../hooks/useFetch';
 
-type Pokemon = {
+export type PokemonApi = {
    name: string;
    url: string
 }
 
 type State = {
-  pokemons: Pokemon[];
+  pokemons: PokemonApi[];
 };
 
 type Action = {
