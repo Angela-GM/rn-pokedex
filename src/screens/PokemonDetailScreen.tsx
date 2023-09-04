@@ -28,6 +28,9 @@ const PokemonDetailScreen: React.FC<PokemonDetailScreenProps> = () => {
 
   const { data, loading, error } = useFetch<Pokemon>(url);
 
+
+
+
   if (loading) {
     return (
       <SafeAreaView>
@@ -162,7 +165,7 @@ const styles = StyleSheet.create({
   },
   typeText: {
     fontSize: 18,
-    backgroundColor: "#48F10E",
+    // backgroundColor: "#48F10E",
     color: "white",
     padding: 10,
     paddingHorizontal: 20,

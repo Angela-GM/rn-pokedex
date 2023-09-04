@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function SearchScreen() {
+  
   return (
     <SafeAreaView style={styles.flexContainer}>
       <LinearGradient
